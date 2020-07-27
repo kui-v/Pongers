@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
     public GUISkin layout;
 
     GameObject theBall;
+    GameObject[] pauseObjects;
 
-    void Start()
-    {
+    void Start() {
         // Set theBall to reference Ball object class
         theBall = GameObject.FindGameObjectWithTag("Ball");
+        pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+        hidePaused();
     }
 
     // Updates the appropriate player score
@@ -55,4 +57,33 @@ public class GameManager : MonoBehaviour
             theBall.SendMessage("ResetBall");
         }
     }
+
+    void Update() {
+
+        // uses the p button to pause and unpause the game
+        if (Input.GetKeyDown(KeyCode.P)) {
+            if (Time.timeScale == 1) {
+                Time.timeScale = 0; // set the timescale to zero (stopped)
+                showPaused();
+            } else if (Time.timeScale == 0) {
+                Time.timeScale = 1; // set the timescale back to one (normal play)
+                hidePaused();
+            }
+        }
+    }
+
+    // shows objects with ShowOnPause tag
+    public void showPaused() {
+        foreach(GameObject g in pauseObjects) { 
+            g.SetActive(true);
+        }
+    }
+
+    // hides objects with ShowOnPause tag
+    public void hidePaused() {
+        foreach(GameObject g in pauseObjects) {
+            g.SetActive(false);
+        }
+    }
+
 }

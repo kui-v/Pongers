@@ -30,9 +30,9 @@ public class BallControl : MonoBehaviour
     }
 
     // Kicks off the round
-    void RestartGame() {
+    void RestartGame(float wait_time = 1f) {
         ResetBall();
-        Invoke("GoBall", 1);
+        Invoke("GoBall", wait_time);
     }
 
     // UNITY RESERVED FUNCTION

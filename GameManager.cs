@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Updates the appropriate player score
-    public static void score(string wallID) {
+    public static void Score(string wallID) {
         if (wallID == "RightWall") {
             PlayerScore1++;
         } else {
